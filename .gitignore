@@ -1,0 +1,23 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# LangGraph local
+.langgraph_api/
+
+# Runtime data (local only)
+data/uploads/
+outputs/
+
+# OS
+.DS_Store
+Thumbs.db

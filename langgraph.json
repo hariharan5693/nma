@@ -1,0 +1,8 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "agent": "./src/agent/graph.py:graph"
+  },
+  "env": ".env",
+  "description": "New Market Onboarding agent. Analyzes uploaded market data files (Excel/CSV), maps their columns against the PMI global template, and produces a mapping + gap analysis summary (matched / unmapped / missing-mandatory fields) with a market-readiness verdict."
+}

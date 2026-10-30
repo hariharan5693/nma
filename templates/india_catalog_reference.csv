@@ -1,0 +1,567 @@
+﻿File_ID,file,sheet,expressed_in,units,actual_columns,description,business_facts,granularity_type
+P&L_MAIN,PMI P&L Database.xlsx,P&L,Dollar,Thousands,Variance Description | Market Group | Market | Account Group | Manual_Mapping | Account | Platform Group | Platform | Sub-Platform | Product Category Group | Product Category | Brand Family | Brand Differentiator | Length Category | Items per Pack | Function | Cost Center | Expense Group | Expense | Period | Current Volume | Reference Volume | +/- Current Amount | +/- Reference Amount | Total | FX | Real | Volume | Mix | Price | ex-Mnf | CC 409 | SVC + FME | Other,"The full P&L across multiple Data Versions (Actuals (AC) vs AC, AC vs Original Budgeted (OB), AC vs Rolling Forecasts (RF)), enabling time?based comparisons and performance tracking.
+Provides columns for actual values,forecast,OB, previous year values, and variances.
+Provide a complete variance?bridge decomposition (Vol, Mix, Price, Cost, Other, Real Var) to explain why CY differs from PY,RF,OB at any P&L line.
+Expose detailed cost sub?components split into CY, PY,RF,OB and Var — supporting deeper diagnostic and root?cause analysis.
+Provide hierarchical dimensions (Region ? Area ? Market Group ? Market; Platform Group ? Platform; Data Version ? Account Group ? Period) to enable multi?dimensional slicing and drill?downs.
+Link Sheet1 factual data (actuals + variances) with Sheet3 structural mapping that assigns each account line item to P&L waterfall levels (NR ? MC ? GP ? PC ? Manual buckets).
+MC is marginal contribution, GP is gross profit, PC is product contribution","Enables end?to?end financial analysis covering revenue, margins, costs, and profitability for PMI by brand family and brand differentiator.
+Supports multi?year and multi?version (Actuals - AC, Rolling Forecasts - RF, Original Budgeted - OB etc.) comparisons at any account line
+Allows analysts to compare performance to Previous year performance (AC vs AC),Annual plan targets (AC vs OB), Latest and updated rolling forecats (AC vs RF).OB is the company’s initial operating plan established at the start of the year. 
+
+OB remains unchanged throughout the year.Used for measuring target achievement and whether the company met its original commitments.
+Rolling Forecasts are revised every quarter using the latest sales trends, market signals, and updated assumptions. RF3 means rolling forecasts as per March.
+RF11 is the last rolling foreacst of the year updated in November, usually more accurate than the beginning?of?year budget.
+There is no December update to RF as OB is updated in December
+Use OB when evaluating performance vs annual plan or target.Use RF when evaluating performance vs latest expected outcome or most realistic forecast.
+Sheet also provides decomposition into: Volume, Mix, Price, Cost, FX, Other, Real Variation.
+Real Variation is computed as:
+Real = Volume + Mix + Price + ex?Manufacturing + CC409 + SVC + FME + Other (Excludes currency fluctuation impact FX)
+Total variance can be expressed as:FX + Real
+These act as drivers which can be used to explain the drivers of performance variance between CY and PY or vs forecast/budget.
+Any expression written as '<Year1> AC vs <Year2> AC' means a comparison where Year1 is the current year (CY) and Year2 is the previous year (PY). Example: ' AC 2025 vs AC 2024' means 2025= CY and 2024= PY.
+
+The mix mentioned here should only be used for mix analysis in dollar terms or financials. For all volume related mix movements and analysis, use the file COMPETITION_MAPPING to undretand which variant falls under which length and price segment",Raw
+P&L_MAPPING,PMI P&L Database.xlsx,Mapping,N/A,N/A,Row Labels | Net Revenues | MC | Gross Profit | Product Cont | Manual Mapping,"The sheet provides the contribution mapping of different account groups(Row labels) for KPIs: NR(Net Revenue), MC (Marginal Contribution), GP (Gross Profit), PC (Product Contribution. The Manual Mapping column provides the individual heads under which these account groups are classified. This is a relatively static file and will not change frequently. ",Useful for mapping account groups into standard P&L line items and provides the guidance for breakup and contribution of individual heads into KPIs,Raw
+NIELSEN_MANUFACTURER,PMI Nielsen Dashboard.xlsx,Manufacturer,Multiple ways,"
+Sales (Vol (KG/LT/000NO)) - Thousands of sticks
+Sales Value - INR
+Share of Sales - Sales (Vol (KG/LT/000NO)) -  Product - %
+Share of Sales Value - Product - %
+Number of Stores Retailing (C) - Absolute count
+Numeric Distribution Handling (C) - %
+Wghtd Dist Handling (C) - %
+Numeric Out of Stock (C) - %
+Wghtd Dist Out of Stock - %
+Value Shr in Handlers (C) - Product - %
+Stocks (Vol (KG/LT/000NO)) - Thousands of sticks
+STR  - Absolute number
+
+",Markets | Periods | MANUFACTURER | Products | Facts | Value,"Contains the following metrics (called facts in the sheet):
+Sales (Vol (KG/LT/000NO))
+Sales Value
+Share of Sales - Sales (Vol (KG/LT/000NO)) - Product
+Share of Sales Value - Product
+Number of Stores Retailing (C)
+Numeric Distribution Handling (C)
+Wghtd Dist Handling (C)
+Numeric Out of Stock (C)
+Wghtd Dist Out of Stock
+Value Shr in Handlers (C) - Product
+Stocks (Vol (KG/LT/000NO))
+STR.
+for each manufacturer for each market for each month.
+Primary Key: {Markets, Periods, Manufacturer, Facts}
+
+The data is available at an all India level and for major focus cities like Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. The data is also available for 4 zones - North, West, East and South. Additionally, captured separately for Delhi NCR
+
+The column 'Products' captures the sale of Illicit products and is not tagged to any manufacturer in the column 'Manufacturer'","This includes critical competitive KPIs such as sales value, sales volume, sales value share, and sales volume share.
+This data is provided by Nielsen and captured through tracking PoS sales at outlets or through consumer interviews at retail outlets in major focus cities like Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. These metrics cover both PMI and all major competitive brands operating in India. They enable a full view of category size, competition intensity, and brand performance in the cigarette market of the cities mentioned above.
+
+This data allows companies to understand true market demand, brand pull, and consumption patterns. It can be used to compare brand strength, segment positioning, market share trends, and competitive shifts across different geographies.
+It helps identify high?growth vs underperforming zones and supports regional market prioritization.
+
+The data is captured for 4 zones - East, west, North, South
+The data is also captured for 12 cities - Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. 
+Remember following rules while doing analysis of markets: 
+India = East Zone+West Zone+North Zone+South Zone
+India = Delhi + Kolkata + Ahmedabad + Mumbai + Pune + Bangalore + Hyderabad + Kochi + Vizag + Chennai + Noida + Gurgaon
+Delhi NCR = North Zone
+Delhi NCR = Delhi + Noida + Gurgaon
+West Zone = Ahmedabad + Mumbai + Pune
+East Zone = Kolkata
+South Zone = Bangalore + Hyderabad + Kochi + Vizag + Chennai
+Make sure there is no double counting in these numbers
+For example: When displaying numbers by cities or regions, do not simulatneously include numbers from Delhi NCR as well as Delhi, Noida, or Gurgaon. That will be double counting. Either select Delhi, Noida, Gurgaon separately or Delhi NCR in total as per user request
+
+Out of all parameters in column 'Facts', only the following are additive and can be added as per above calculations: 
+Number of Stores Retailing (C), Sales (Vol (KG/LT/000NO)), Sales Value, Stocks (Vol (KG/LT/000NO))
+Rest of the parameters are % or ratios and should be reported as-is and should not be added",Raw
+NIELSEN_BRANDFAMILY,PMI Nielsen Dashboard.xlsx,Brand Family,Multiple ways,"
+Sales (Vol (KG/LT/000NO)) - Thousands of sticks
+Sales Value - INR
+Share of Sales - Sales (Vol (KG/LT/000NO)) -  Product - %
+Share of Sales Value - Product - %
+Number of Stores Retailing (C) - Absolute count
+Numeric Distribution Handling (C) - %
+Wghtd Dist Handling (C) - %
+Numeric Out of Stock (C) - %
+Wghtd Dist Out of Stock - %
+Value Shr in Handlers (C) - Product - %
+Stocks (Vol (KG/LT/000NO)) - Thousands of sticks
+STR  - Absolute number
+
+",Markets | Periods | BRAND FAMILY | Facts | Value,"Contains the following metrics (called facts in the sheet):
+Sales (Vol (KG/LT/000NO))
+Sales Value
+Share of Sales - Sales (Vol (KG/LT/000NO)) - Product
+Share of Sales Value - Product
+Number of Stores Retailing (C)
+Numeric Distribution Handling (C)
+Wghtd Dist Handling (C)
+Numeric Out of Stock (C)
+Wghtd Dist Out of Stock
+Value Shr in Handlers (C) - Product
+Stocks (Vol (KG/LT/000NO))
+STR.
+for each brand family for each market for each month.
+Primary Key: {Markets, Periods, Brand Family, Facts}
+
+The data is available at an all India level and for major focus cities like Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. The data is also available for 4 zones - North, West, East and South. Additionally, captured separately for Delhi NCR","This includes critical competitive KPIs such as sales value, sales volume, sales value share, and sales volume share.
+This data is provided by Nielsen and captured through tracking PoS sales at outlets or through consumer interviews at retail outlets in major focus cities like Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. These metrics cover both PMI and all major competitive brands operating in India. They enable a full view of category size, competition intensity, and brand performance in the cigarette market of the cities mentioned above.
+
+This data allows companies to understand true market demand, brand pull, and consumption patterns. It can be used to compare brand strength, segment positioning, market share trends, and competitive shifts across different geographies.
+It helps identify high?growth vs underperforming zones and supports regional market prioritization.
+
+
+The data is captured for 4 zones - East, west, North, South
+The data is also captured for 12 cities - Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. 
+Remember following rules while doing analysis of markets: 
+India = East Zone+West Zone+North Zone+South Zone
+India = Delhi + Kolkata + Ahmedabad + Mumbai + Pune + Bangalore + Hyderabad + Kochi + Vizag + Chennai + Noida + Gurgaon
+Delhi NCR = North Zone
+Delhi NCR = Delhi + Noida + Gurgaon
+West Zone = Ahmedabad + Mumbai + Pune
+East Zone = Kolkata
+South Zone = Bangalore + Hyderabad + Kochi + Vizag + Chennai
+Make sure there is no double counting in these numbers
+For example: When displaying numbers by cities or regions, do not simulatneously include numbers from Delhi NCR as well as Delhi, Noida, or Gurgaon. That will be double counting. Either select Delhi, Noida, Gurgaon separately or Delhi NCR in total as per user request
+
+Out of all parameters in column 'Facts', only the following are additive and can be added as per above calculations: 
+Number of Stores Retailing (C), Sales (Vol (KG/LT/000NO)), Sales Value, Stocks (Vol (KG/LT/000NO))
+Rest of the parameters are % or ratios and should be reported as-is and should not be added",Raw
+NIELSEN_VARIANT,PMI Nielsen Dashboard.xlsx,Variant,Multiple ways,"
+Sales (Vol (KG/LT/000NO)) - Thousands of sticks
+Sales Value - INR
+Share of Sales - Sales (Vol (KG/LT/000NO)) -  Product - %
+Share of Sales Value - Product - %
+Number of Stores Retailing (C) - Absolute count
+Numeric Distribution Handling (C) - %
+Wghtd Dist Handling (C) - %
+Numeric Out of Stock (C) - %
+Wghtd Dist Out of Stock - %
+Value Shr in Handlers (C) - Product - %
+Stocks (Vol (KG/LT/000NO)) - Thousands of sticks
+STR  - Absolute number
+
+",Markets | Periods | VARIANT NAME | Facts | Value,"Contains the following metrics (called facts in the sheet):
+Sales (Vol (KG/LT/000NO))
+Sales Value
+Share of Sales - Sales (Vol (KG/LT/000NO)) - Product
+Share of Sales Value - Product
+Number of Stores Retailing (C)
+Numeric Distribution Handling (C)
+Wghtd Dist Handling (C)
+Numeric Out of Stock (C)
+Wghtd Dist Out of Stock
+Value Shr in Handlers (C) - Product
+Stocks (Vol (KG/LT/000NO))
+STR.
+for each variant for each market for each month.
+Primary Key: {Markets, Periods, Variant, Facts}
+
+The data is available at an all India level and for major focus cities like Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. The data is also available for 4 zones - North, West, East and South. Additionally, captured separately for Delhi NCR","This includes critical competitive KPIs such as sales value, sales volume, sales value share, and sales volume share.
+This data is provided by Nielsen and captured through tracking PoS sales at outlets or through consumer interviews at retail outlets in major focus cities like Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. These metrics cover both PMI and all major competitive brands operating in India. They enable a full view of category size, competition intensity, and brand performance in the cigarette market of the cities mentioned above.
+
+This data allows companies to understand true market demand, brand pull, and consumption patterns. It can be used to compare brand strength, segment positioning, market share trends, and competitive shifts across different geographies.
+It helps identify high?growth vs underperforming zones and supports regional market prioritization.
+
+
+The data is captured for 4 zones - East, west, North, South
+The data is also captured for 12 cities - Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. 
+Remember following rules while doing analysis of markets: 
+India = East Zone+West Zone+North Zone+South Zone
+India = Delhi + Kolkata + Ahmedabad + Mumbai + Pune + Bangalore + Hyderabad + Kochi + Vizag + Chennai + Noida + Gurgaon
+Delhi NCR = North Zone
+Delhi NCR = Delhi + Noida + Gurgaon
+West Zone = Ahmedabad + Mumbai + Pune
+East Zone = Kolkata
+South Zone = Bangalore + Hyderabad + Kochi + Vizag + Chennai
+Make sure there is no double counting in these numbers
+For example: When displaying numbers by cities or regions, do not simulatneously include numbers from Delhi NCR as well as Delhi, Noida, or Gurgaon. That will be double counting. Either select Delhi, Noida, Gurgaon separately or Delhi NCR in total as per user request
+
+Out of all parameters in column 'Facts', only the following are additive and can be added as per above calculations: 
+Number of Stores Retailing (C), Sales (Vol (KG/LT/000NO)), Sales Value, Stocks (Vol (KG/LT/000NO))
+Rest of the parameters are % or ratios and should be reported as-is and should not be added",Raw
+NIELSEN_SIZE,PMI Nielsen Dashboard.xlsx,Size,Multiple ways,"Sales (Vol (KG/LT/000NO)) - Thousands of sticks
+Sales Value - INR
+Share of Sales - Sales (Vol (KG/LT/000NO)) - Product - %
+Share of Sales Value - Product - %
+Number of Stores Retailing (C) - Absolute count
+Numeric Distribution Handling (C) - %
+Wghtd Dist Handling (C) - %
+Numeric Out of Stock (C) - %
+Wghtd Dist Out of Stock - %
+Value Shr in Handlers (C) - Product - %
+Stocks (Vol (KG/LT/000NO)) - Thousands of sticks
+STR - Absolute number",Markets | Periods | NEW SIZE | Facts | Value,"Contains Nielsen retail audit data aggregated at the cigarette size/format level for each market and period. Provides size-level sales metrics across King Size, Pocket Filter, Regular Filter, and other size formats.","This includes critical size segment KPIs such as sales value, sales volume, sales value share, and sales volume share by cigarette format. This data is provided by Nielsen and captured through tracking PoS sales at outlets or through consumer interviews at retail outlets in major focus cities like Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. Enables analysis of consumer preference shifts across cigarette size formats (King Size vs Pocket Filter vs Regular Filter) and helps identify premiumization or downtrading trends at the format level. Supports portfolio optimization decisions and helps understand market evolution across different physical product formats.
+
+
+The data is captured for 4 zones - East, west, North, South
+The data is also captured for 12 cities - Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. 
+Remember following rules while doing analysis of markets: 
+India = East Zone+West Zone+North Zone+South Zone
+India = Delhi + Kolkata + Ahmedabad + Mumbai + Pune + Bangalore + Hyderabad + Kochi + Vizag + Chennai + Noida + Gurgaon
+Delhi NCR = North Zone
+Delhi NCR = Delhi + Noida + Gurgaon
+West Zone = Ahmedabad + Mumbai + Pune
+East Zone = Kolkata
+South Zone = Bangalore + Hyderabad + Kochi + Vizag + Chennai
+Make sure there is no double counting in these numbers
+For example: When displaying numbers by cities or regions, do not simulatneously include numbers from Delhi NCR as well as Delhi, Noida, or Gurgaon. That will be double counting. Either select Delhi, Noida, Gurgaon separately or Delhi NCR in total as per user request
+
+Out of all parameters in column 'Facts', only the following are additive and can be added as per above calculations: 
+Number of Stores Retailing (C), Sales (Vol (KG/LT/000NO)), Sales Value, Stocks (Vol (KG/LT/000NO))
+Rest of the parameters are % or ratios and should be reported as-is and should not be added",Raw
+NIELSEN_BRAND_SUB_FAMILY,PMI Nielsen Dashboard.xlsx,Brand Subfamily,Multiple ways,"Sales (Vol (KG/LT/000NO)) - Thousands of sticks
+Sales Value - INR
+Share of Sales - Sales (Vol (KG/LT/000NO)) - Product - %
+Share of Sales Value - Product - %
+Number of Stores Retailing (C) - Absolute count
+Numeric Distribution Handling (C) - %
+Wghtd Dist Handling (C) - %
+Numeric Out of Stock (C) - %
+Wghtd Dist Out of Stock - %
+Value Shr in Handlers (C) - Product - %
+Stocks (Vol (KG/LT/000NO)) - Thousands of sticks
+STR - Absolute number",Markets | Periods | BRAND_SUB_FAMILY | Facts | Value,"Contains Nielsen retail audit data at the brand sub-family level, which represents brand-format combinations (e.g., Marlboro KS, Marlboro PF, Classic KS, Gold Flake Kings). Provides granular performance metrics at the intersection of brand and physical format.","This includes critical competitive KPIs such as sales value, sales volume, sales value share, and sales volume share at brand-format level. This data is provided by Nielsen and captured through tracking PoS sales at outlets or through consumer interviews at retail outlets in major focus cities. Enables detailed competitive analysis at the brand-format intersection level, helping identify which brand-format combinations are gaining or losing share. Supports portfolio strategy by revealing performance patterns across different format expressions of the same brand (e.g., Marlboro King Size vs Marlboro Pocket Filter vs Marlboro Regular Filter). Links brand strength with format preference to inform both brand strategy and format optimization decisions.
+
+
+The data is captured for 4 zones - East, west, North, South
+The data is also captured for 12 cities - Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. 
+Remember following rules while doing analysis of markets: 
+India = East Zone+West Zone+North Zone+South Zone
+India = Delhi + Kolkata + Ahmedabad + Mumbai + Pune + Bangalore + Hyderabad + Kochi + Vizag + Chennai + Noida + Gurgaon
+Delhi NCR = North Zone
+Delhi NCR = Delhi + Noida + Gurgaon
+West Zone = Ahmedabad + Mumbai + Pune
+East Zone = Kolkata
+South Zone = Bangalore + Hyderabad + Kochi + Vizag + Chennai
+Make sure there is no double counting in these numbers
+For example: When displaying numbers by cities or regions, do not simulatneously include numbers from Delhi NCR as well as Delhi, Noida, or Gurgaon. That will be double counting. Either select Delhi, Noida, Gurgaon separately or Delhi NCR in total as per user request
+
+Out of all parameters in column 'Facts', only the following are additive and can be added as per above calculations: 
+Number of Stores Retailing (C), Sales (Vol (KG/LT/000NO)), Sales Value, Stocks (Vol (KG/LT/000NO))
+Rest of the parameters are % or ratios and should be reported as-is and should not be added",Raw
+NIELSEN_STRENGTH,PMI Nielsen Dashboard.xlsx,Strength,Multiple ways,"Sales (Vol (KG/LT/000NO)) - Thousands of sticks
+Sales Value - INR
+Share of Sales - Sales (Vol (KG/LT/000NO)) - Product - %
+Share of Sales Value - Product - %
+Number of Stores Retailing (C) - Absolute count
+Numeric Distribution Handling (C) - %
+Wghtd Dist Handling (C) - %
+Numeric Out of Stock (C) - %
+Wghtd Dist Out of Stock - %
+Value Shr in Handlers (C) - Product - %
+Stocks (Vol (KG/LT/000NO)) - Thousands of sticks
+STR - Absolute number",Markets | Periods | STRENGTH | Facts | Value,"Contains Nielsen retail audit data aggregated at the flavor/strength category level for each market and period. Categorizes cigarettes by flavor profile: Capsule (click-to-activate flavors), FF (Full Flavor/mainstream), LTN (Lights/Natural), Kretek (clove-flavored), and Others.","This includes critical flavor segment KPIs such as sales value, sales volume, sales value share, and sales volume share by strength/flavor category. This data is provided by Nielsen and captured through tracking PoS sales at outlets or through consumer interviews at retail outlets in major focus cities. Enables analysis of consumer taste preference evolution and flavor innovation adoption across markets. Helps identify growth opportunities in emerging flavor segments (particularly capsule innovations) versus traditional full flavor and lights segments. Supports innovation strategy by revealing which flavor profiles are gaining consumer acceptance and helps assess competitive intensity within each flavor segment. Links with variant-level data to understand which specific variants are driving growth within each strength category.
+
+
+The data is captured for 4 zones - East, west, North, South
+The data is also captured for 12 cities - Ahmedabad, Bangalore, Chennai, Delhi, Gurgaon, Hyderabad, Kochi, Kolkata, Mumbai, Noida, Pune, Vizag. 
+Remember following rules while doing analysis of markets: 
+India = East Zone+West Zone+North Zone+South Zone
+India = Delhi + Kolkata + Ahmedabad + Mumbai + Pune + Bangalore + Hyderabad + Kochi + Vizag + Chennai + Noida + Gurgaon
+Delhi NCR = North Zone
+Delhi NCR = Delhi + Noida + Gurgaon
+West Zone = Ahmedabad + Mumbai + Pune
+East Zone = Kolkata
+South Zone = Bangalore + Hyderabad + Kochi + Vizag + Chennai
+Make sure there is no double counting in these numbers
+For example: When displaying numbers by cities or regions, do not simulatneously include numbers from Delhi NCR as well as Delhi, Noida, or Gurgaon. That will be double counting. Either select Delhi, Noida, Gurgaon separately or Delhi NCR in total as per user request
+
+Out of all parameters in column 'Facts', only the following are additive and can be added as per above calculations: 
+Number of Stores Retailing (C), Sales (Vol (KG/LT/000NO)), Sales Value, Stocks (Vol (KG/LT/000NO))
+Rest of the parameters are % or ratios and should be reported as-is and should not be added",Raw
+COMPETITION_MAPPING,PMI vs Competition Mapping.xlsx,PMI vs Competition Mapping,Names of competitor brands,N/A,"Length Segment | Price Segment | Price Range
+(Per Stick) | Format
+(Thickness) | Flavor Segment | PMI: Marlboro | Relevant Competition variants","This file provides a structured mapping of Marlboro cigarette SKUs against their closest competitive variants/ SKUs across key product dimensions such as length segment, price tier, format, flavor segment, and variant?level competition.
+
+This file should also be used to understand which variants (column F) fall under which length and price segment (Column A and B respectively). This would help in doing the mix movement analysis. ","It  enables consistent comparison between Marlboro offerings and relevant products from other major tobacco manufacturers. This file can be used to support downstream analytics such as SKU clustering, competitive benchmarking, pricing architecture evaluation, pack?level substitution analysis
+Link with INDIA_SEGMENTATION to analyse trends and movement in market shares and sales of PMI's SKUs vs competitive SKUs (TMOs); help to map Marlboro variants to corresponding competitor SKUs in the market, understand competitive intensity within each price, length, and format segment
+Also link with NIELSEN_VARIANT to analyse the value and volume market share changes in PMI's SKUs and competitive SKUs
+It facilitates analysis of market share trends and sales movement by linking Marlboro variants to comparable competitor SKUs, helping quantify competitive intensity and segment wise shifts. It also enables integration with broader market datasets to understand how Marlboro’s performance compares to competitor SKUs at both value and volume levels across markets.
+
+This file should also be used to understand which variants (column F) fall under which length and price segment (Column A and B respectively). This would help in doing the mix movement analysis. 
+Uptrading is indicated when volume growth shifts toward Premium (King Size) and High Price segments, with slower growth or decline in Value (Pocket Filter)—showing consumers moving to higher-priced products.
+Downtrading is the opposite: rising volumes in Value and possibly High, while Premium declines or underperforms, signaling price sensitivity.
+If Premium grows faster than total market, mix is improving (premiumization); if Value outgrows, mix is diluting.
+Stable total volume with segment mix shifting upward still indicates uptrading, even without overall growth.
+You should compare relative growth rates across segments, not just absolute volumes, to infer mix movement.",Raw
+TMO_BRAND_MAPPING,PMI vs Competition Mapping.xlsx,TMO & Brand Mapping,"Names of TMO, brands, brands sub-family and variants",N/A,TMO | Brand | Brand Sub Family | Variant,"This tab provides a mapping of the Trade mark organizations (TMO), their respective brands, their sub-brands and the variants in the market","The information from this tab should be used wherever a mapping of TMO with its brand, sub-brand and variants is required. 
+
+The file should also be used when the brands, sub-brands or variants for a TMO are to be fetched. If any information about a TMO is asked, then use this file to find its brands, sub-brands and variants and accordingly add information about them in the response if it makes the answers better. For ex. if query is about volume of Marlboro, then also pick all sub-brands and variants of Marlboro from this file and provide the analysis for their volume from respective files. 
+
+Use this file for doing any competitove analysis and checking which brands, sub-brands or variants fall under a TMO. 
+
+Whenever any response has to be broken into brands/ sub-brands/ variants, then this file should be used to do that mapping. 
+
+To be integrated with NIELSEN_MANUFACTURER, NIELSEN_BRANDFAMILY, NIELSEN_VARIANT when a comparison of PMI with the main competitors (TMOs) and their brands, sub-brands and variants is to be done.",Raw
+MARLBORO_VARIANT_MAPPING,PMI vs Competition Mapping.xlsx,Marlboro Variant Mapping,Variant names,N/A,Brand Family| Brand Sub-family| SECONDARY_VOLUME| SECONDARY_VOLUME (SKU)| FINANCIAL_SHIPMENT| INVENTORY_PMI| SFA_TOWN_UBO| OB_RF_VOLUME| NIELSEN_VARIANT| INDUSTRY_SEGMENTATION| Alternate names| PMI Internal Classification| Segment| Length| Existing / Delisted,"The comprehensive master mapping table for all Marlboro brand sub-family and variants sold or planned in the India market. Provides the authoritative product hierarchy from Brand to brand sub-family to Variant across files like SECONDARY_VOLUME, FINANCIAL_SHIPMENT, INVENTORY_PMI, SFA_TOWN_UBO, OB_RF_VOLUME, NIELSEN_VARIANT, INDUSTRY_SEGMENTATION
+
+Provides a common heirarchy to be followed while doing brand, brand sub-family and variant level analysis","Enables a mapping of like-to-like brand sub-family and variants of PMI across functions. Use this file to map sub-brand family and variants across all data sources like SECONDARY_VOLUME, FINANCIAL_SHIPMENT, INVENTORY_PMI, SFA_TOWN_UBO, OB_RF_VOLUME, NIELSEN_VARIANT, INDUSTRY_SEGMENTATION. 
+For ex: For Marlboro brand and KS brand sub-family, SECONDARY_VOLUME variant Red  is equivalent to variant Red in FINANCIAL_SHIPMENT,  Red in INVENTORY_PMI, Red in SFA_TOWN_UBO,  (RED FWD) / RED / RED BOX / RED 3.5 in OB_RF_VOLUME, Marlboro Regular (Red) - KS in NIELSEN_VARIANT, Marlboro Red in INDUSTRY_SEGMENTATION. 
+
+Provides Marlboro standardized heirarchy from Brand to Sub Brand to Variant 
+
+Use the column 'PMI Internal Classification' to map variants and sub-brands where they are tagged using classification of Core, KS High, PF and RF if the user asks a query using this classification",Raw
+PRIMARY_TRADE_OFFERS_MAIN,PMI Trade Offers.xlsx,Trade Offers,Qualitative,N/A,Month | Region | Branch | GPI CFA | STATE | Market | SKU | Channel | Short Description | Trade offer beneficiary | Invoice discount on purchase: Trade offer Details | Offer Period | Variant,"Contains trade offer information structured by region, branch, state, and city clusters (GPI CFA) locations.
+Includes SKU?level promotion details, such as Offer type, Offer period, Beneficiary type, Applicable trade channel, CFA / distribution node information.
+Useful for:
+This file serves as a foundational reference for understanding how PMI trade programs are deployed across the distributor/ retailer network.
+This files provides structured visibility into PMI trade offers across regions, branches, states, and city clusters (GPI CFA) in India
+This file can also be linked to SFA_Town_UBO to see the uptick in distribution outlets (UBO) at the time a particular trade offer is running and vice versa. ","This contains structured information on trade offers deployed across regions, branches, states, and city clusters. It provides visibility into distribution node level execution, allowing assessment of how promotions flow through CFAs or other distribution points into the market. When connected with SECONDARY_VOLUME and SFA_TOWN_UBO, it helps to analyse the impact of trade promotions on Secondary volume (volume sold from distributors to retailers) offtake, whether trade promotion activity improves distribution reach or affects UBO growth or increases secondary sales.
+This file can be linked to SECONDARY_VOLUME which provides sales from distributor/wholesaler to retail outlets which in turn helps in understanding where trade offers are driving increase in sales.
+This file can also be linked to SFA_TOWN_UBO to see the uptick in distribution outlets (UBO) at the time a particular trade offer is running and vice versa. ",Raw
+PRIMARY_TRADE_OFFERS_SKU_MASTER,PMI Trade Offers.xlsx,SKU Master, ,N/A,SKU_CODE | SKU_ID | SKU_PULSE | SKU_LAKSHYASFA | SKU_SOUTHSFA | SKU | VARIANT | VAR | PACK_SIZE | BRAND_NAME | SEGMENT | PORTFOLIO | MRP | _ETL_LOAD_DATETIME | _ETL_SOURCE | _ETL_RUN_ID | _ETL_JOB_ID | INSERT_DATETIME | MODIFIED_DATETIME | RUN_HISTORY_ID,SKU Master Sheet and lists all SKUs of PMI,This sheet is the master list of all SKUs of PMI to uniquely identify the SKU. SKU Code is the unique identifier for the SKU.,Raw
+SFA_TOWN_UBO,PMI SFA UBO.xlsx,SFA UBO,Number of outlets,Absolute Number,Year | Month | Variant | Outlet_Type | City | Town | UBO | State,"Represents the Unique Billed Outlets (UBO) - the number of outlets selling PMI brands/ SKU/ variants across states and cities
+Link with PRIMARY_TRADE_OFFERS_MAIN to measure the effect of trade promotions/incentives on sell-out by state and city
+Link with excel SECONDARY_VOLUME to correlate change in secondary volume with the change in the number of UBOs for a particular state, city, SKU and variant outlets","UBO(Unique build outlets) acts as a key indicator of route to market strength. This file has the actual number of retai outlets in a particular state and city serviced by PMI distributor. Changes in UBO highlight shifts in distribution effectiveness, retail engagement, and marketplace visibility.Higher UBO counts typically correlate with stronger market presence and better sales potential. It helps in analysis of how distribution expansion or contraction affects secondary sales and how outlet availability influences brand performance.",Raw
+SECONDARY_VOLUME,PMI Secondary Volume.xlsx,Secondary Volume,Volumes,Thousand sticks,Year | Month Name | region | branch | geostate | reportcity | SKU | Variant | Dealer | Hawker | Modern | Retail | Grand Total | Quarter | Mapping,"Contains sales volumes from distributor/ wholesaler to retail outlets of PMI variants; represent true market demand and consumption patterns; this volume is called secondary volume or IMS (in-market sales)
+Includes data at a granular level, such as Brand, SKU,Variant,State, City,Channel (Dealer / Hawker / Modern / Retail)
+Captures monthly volume sales movement
+Includes information enabling identification of unusual sales fluctuations for specific SKUs, variants, states, or cities.
+Segment Mix computation should be performed by aggregating records based on the segment categories defined in the ‘Mapping’ column: KS High, KS Premium, PF, and RF.
+Designed to be linkable with:
+Primary_Trade_Offers (using state/city/SKU fields) to measure the effect of trade promotions/incentives on sell-out by state and city
+SFA_Town_UBO (using state/city/SKU fields) to correlate change in secondary volume with the change in the number of distribution outlets Useful to:
+Monitor channel health—identify growth, decline across Dealer, Hawker, Modern trade and traditional Retail channels
+Support marketing insights by revealing share of market and segment performance patterns at state and city level in India
+Improve demand planning by signaling demand shifts early and informing rolling forecasts
+Enable operational and sales interventions by analysing volume sales movement at state and city level
+Highlight any abnormal sales trend in data for any particular SKU, variant for any state or city","Secondary sales (distributor/wholesaler to retailer) measure actual market demand and consumption patterns.
+This volume is a more accurate indicator of real sales compared to shipment based measures. Shipment volume data is the volume sold by Philip Morris Internatinal (PMI) to its primary distributor Godrey Philips India (GPI)
+Secondary sales allow product performance evaluation at detailed levels such as brand, SKU, variant, state, city and channel. It further identifies growth or decline across different channels (Dealer, Hawker, Modern Trade, Retail). It reveals segment performance patterns, especially across Indian states and cities.It provides early insight into demand shifts and helps refine rolling forecasts and adjust production/supply strategies. For example: a decrease in secondary sales in a particular city may start showing in the financial shipments data two months down the line as there will already be an inventory buildup across channel partners. It helps in identifying changes or anomalies in volume movement at the state and city level. It highlights unusual patterns for specific SKUs or variants in specific regions.
+It helps measure the impact of trade promotions or incentives on sell?out performance.
+Secondary sales can be linked with distribution outlet data to analyze whether changes in outlet reach are driving changes in sales.",Raw
+OB_RF_VOLUME,PMI OB and RF Volume.xlsx,OB and RF Volume,Volumes,Million sticks,"DV | Local Mapping | NP_Type | Data Version | Market Group | Market | Affiliate | Product Category | Sourced Product | Standard Product Description | Brand Family | Brand Differentiator | Items per Pack | Unit of Measure | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec | Total | Jan_eqv | Feb_eqv | Mar_eqv | Apr_eqv | May_eqv | Jun_eqv | Jul_eqv | Aug_eqv | Sep_eqv | Oct_eqv | Nov_eqv | Dec_eqv | Total_eqv | Q1 | Q2 | Q3 | Q4 | Q1_eqv | Q2_eqv |	Q3_eqv | Q4_eqv",This sheet provides the original budgeted and rolling forecast volume figures for PMI. When linked with SECONDARY_VOLUME excel can help analyse the performance of PMI in terms of volume per month compared to OB and RF figures. ,"After analysis of volume in this excel with the corresponding time period in SECONDARY_VOLUME excel, the results should be highlighted. If actual volume is higher than OB or RF, then the performance is positive and vice versa.",Raw
+INDUSTRY_SEGMENTATION,PMI India Industry Segmentation.xlsx,Industry Data,Volumes,Million sticks,"Key 1 | Key 2 |Key 3 | Comments | EBROM| GSPR - Upload | GSPR - Download | GPI Description | Capsule / Non Capsule | TMO | Brand |Length Segment | ""Length (mm)"" | ""Launch
+Price"" | MRP/Pack | ""PMI - Price Category GSPR"" | Flavor | Pack Type |	NTD / Non NTD | Format | Segment| Pack size | Stick Price | 2010 | 2011 | 2012 |	2013 | 2014 | 2015 | 2016 |2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | YTD'25 SoM | YTD'24 SoM | Delta | YTD Growth 25	","Contains sales volumes of cigarettes across all major industry trademark organizations (TMO). Provides industry?level volume data structured by product dimensions such as price class, length type, and thickness categor. 
+This sales data is provided by PMI distributor GPI (Godfrey Philips) and is the shipment data of all market players and not secondary sales. Note this while doing like-to-like analysis.
+This dataset should be used in conjunction with:
+1. COMPETITION_MAPPING: Enables SKU-level competitive benchmarking, maps PMI SKUs to competitor SKUs
+Supports: Key competitor brand and SKU identification, Substitution analysis, Pricing comparisons, Segment alignment
+
+2. FINANCIAL_SHIPMENT: Enables linkage to PMI internal shipment and revenue data
+Supports:
+Competitive impact analysis on PMI sales
+Correlation between industry trends and PMI performance","Key Analytical Use Cases
+1. Market Sizing & Share Analysis
+Measure Share of Market (SOM) for PMI vs competitors (this file is the primary source for market share data)
+Analyze Share of Segment (SOS) across price tiers, formats, and lengths
+Track market share shifts over time
+2. Competitive Benchmarking
+Assess competitive intensity by segment (price, format, length)
+Identify key competitors within each segment
+Evaluate segment-wise fragmentation or concentration
+3. Pricing Architecture & Premiumization
+Analyze price ladder structure across brands and segments
+Identify premiumization / down-trading trends
+Understand price gaps between competing SKUs
+4. Substitution & Consumer Migration
+Identify substitute SKUs across competitors
+Analyze cross-tier substitution patterns (up-trading / down-trading)
+Understand consumer switching behavior across: Price bands, Pack formats, Length categories
+5. Portfolio Strategy & SKU Optimization
+Evaluate SKU density within segments (crowding analysis)
+Identify over/under-served segments
+Support portfolio rationalization and gap identification
+6. Competitive Impact on PMI Performance
+Assess how industry competition affects PMI shipment/financial performance
+Analyze SKU-level performance vs competition intensity
+Identify regional demand variations linked to competitive landscape",Raw
+CAPACITY_GLIDEPATH,PMI Capacity Glidepath.xlsx,Capacity,Volumes,Million sticks,"Sku | Format | Variant Name | Jan-YY |	Feb-YY | Mar-YY | Apr-YY | May-YY | Jun-YY | Jul-YY | Aug-YY | Sep-YY | Oct-YY | Nov-YY | Dec-YY | Jan-YY | Feb-YY | Mar-YY | Apr-YY | May-YY | Jun-YY | Jul-YY | Aug-YY | Sep-YY |	Oct-YY |Nov-YY | Dec-YY","This sheet contains the manufacturing capacity forecasts in millions of sticks per month
+Time horizon: 24 months
+Purpose: Track capacity planning and ramp-up schedules for each SKU format. Can be  used to benchmark capacity with actual production (FINANCIAL_SHIPMENTS) and inventory (INVENTORY_PMI).  
+Capacity always needs to be viewed at SKU Format level. Capacity is production line capacity not specific sku capacity since its a shared production line. 
+
+Can be used to answer questions like ""When do we need to invest in capacity and for which variant"" or "" Where do we see demand peaks that exceed available capacity in the next n weeks?"" or ""What is our current capacity utilization by variant/ SKU Format and where are the constraints? What constraints or supply gaps require escalation?"" by comparing SKU formats from this file and FINANCIAL_SHIPMENTYS and seeing where forecast>capacity for a particular SKU Format","If PMI wants to do trade loading and increase inventory, this can be checked with this excel. If the capacity in excel is higher than the financial shipments for an SKU Format, this highlights presence of excess capacity and extra production can be achieved and vice versa. The excel can also be used to identify if demand peaks in Financial shipments are exceeding available capacity and will  present challenges.  The excel can also be used to highlight current capacity utilization by variant and the constraints in system. The excel can also highlight where there is capacity headroom that can absorb higher production.
+
+When a query is asked about the corrleation between available capacity for an SKU or variant, always say that ""Capacity correlation can only be done for SKU Formats and not individual SKUs. Please provide an SKU format like KS_20, KS_10 etc. for which the coorelation should be done""
+
+If there is a length format present in INDUSTRY_SEGMENTATION file but it is not present in this file, then that is a new length format which a competitor may have launched.",Raw
+INVENTORY_GPI,PMI Inventory Details.xlsx,GPI,Volumes,Million sticks,SKU Details | SKU | Variant name | Length Format | SKU Format | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec,"This sheet provides the monthly opening inventory of PMI distributor GPI. Stress is on ""Month Opening Inventory"" as expectation may be month inventory, average inventory through the month or closing which is not what this represents - It is Month Opening inventory
+
+Structured to allow linkage with CAPACITY_GLIDEPATH through the column 'Sku Format'. Use this column to connect with CAPACITY_GLIDEPATH and check available capacity in each SKU format.","The sheet provides information on the month opening inventory of PMI present with its manufacturer GPI
+
+
+This data can also be used to calculate GPI Days of Inventory (DOI) by variant and segment. FINANCIAL_SHIPMENT excel provides the forecast sales of every variant and segment and this excel provides the opening monthly inventory. Dividing the former by latter will provide the DOI for that variant and segment.
+",Raw
+INVENTORY_PMI,PMI Inventory Details.xlsx,PMI,Volumes,Million sticks,SKU Details | SKU | Variant name | Length Format | SKU Format | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec,"This sheet provides the monthly opening inventory of PMI. Stress is on ""Month Opening Inventory"" as expectation may be month inventory, average inventory through the month or closing which is not what this represents - It is Month Opening inventory.
+
+Structured to allow linkage with CAPACITY_GLIDEPATH through the column 'Sku Format'. Use this column to connect with CAPACITY_GLIDEPATH and check available capacity in each SKU format.","The sheet provides information on the month opening inventory present with PMI.
+
+This data can also be used to calculate PMI Days of Inventory (DOI) by variant and segment. FINANCIAL_SHIPMENT excel provides the forecast sales of every variant and segment and this excel provides the opening monthly inventory. Dividing the former by latter will provide the DOI for that variant and segment.",Raw
+FINANCIAL_SHIPMENT,PMI Financial Shipments.xlsx,Financial Shipments,Volumes,Million sticks,SKU Details | SKU | Variant name | Length Format | SKU Format | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec,"Contains historic as well as forecasted (the months succeeding the current month are forecasted values) month?on?month shipment volumes for each variant within PMI product segments.
+Includes financial shipment figures, representing sales made by the company to its primary distributor Godfrey Philips India (GPI)
+Structured to allow linkage with SECONDARY_VOLUME through shared product and time identifiers (e.g., variant, SKU, month)
+
+Structured to allow linkage with CAPACITY_GLIDEPATH through the column 'Sku Format'. Use this column to connect with CAPACITY_GLIDEPATH and check available capacity in each SKU format. If Financial shipments in this file >= 85% of value in CAPACITY_GLIDEPATH file for any SKU Format, then PMI capacity is going to be constrained for that particular SKU Format . Highlight such cases when asked. 
+Variant and Sku are Variable - What is mentioned in sheet is not a 100% universe we may have newer launches in future or delistings of SKUs and variants","This contains month?on?month financial shipment volumes for each cigarette variant, enabling analysis of how individual variants contribute to overall company performance.
+This data is the volume sold by PMI to its primary distributor GPI.
+It supports identification of sales fluctuations, growth patterns, and performance declines, helping detect emerging demand trends, seasonality effects, or volume disruptions. It contributes to demand forecasting and portfolio planning by showing how shipment volumes evolve over time and which variants are gaining or losing momentum. Increases or decreases in shipment volumes generally translate into secondary?market volume shifts with a lag of 1–2 months.
+
+This file is also used to calculate Bias (%) and Sales Forecast Accuracy (SFA) based on two lag periods:
+M-1 (Lag of 1 period)
+M-3 (Lag of 3 periods)
+
+Definition of Lags
+M-1 (Lag 1):
+Compares the actual sales of a given month with the forecast for that same month prepared in the previous month.
+M-3 (Lag 3):
+Compares the actual sales of a given month with the forecast for that same month prepared three months earlier.
+
+Data Selection Rules
+Actual Values:
+Always take actuals from the folder corresponding to the current month under analysis.
+Forecast Values:
+For M-1: Take the forecast for the current month from the previous month’s folder.
+For M-3: Take the forecast for the current month from the folder three months prior (e.g., for April actuals, use the forecast from January).
+Ensure the forecast corresponds to the same variant/segment.
+
+Formulas
+Bias (%)
+M-1 Bias:
+Bias %=(Actual?Forecast (M-1))/Forecast (M-1)×100
+M-3 Bias:
+Bias %=(Actual?Forecast (M-3))/Forecast (M-3)×100
+Sales Forecast Accuracy (SFA)
+SFA=1??Bias %
+(Use absolute bias to reflect accuracy regardless of under- or over-forecasting.)
+
+Summary Example
+For December analysis:
+Actuals: From December folder
+M-1 Forecast: From November folder
+M-3 Forecast: From September folder
+
+When a query is asked about the corrleation between available capacity for an SKU or variant, always say that ""Capacity correlation can only be done for SKU Formats and not individual SKUs. Please provide an SKU format like KS_20, KS_10 etc. for which the coorelation should be done""",Raw
+FINANCIAL_SHIPMENT_PROCON,PMI Financial Shipments.xlsx,ProCon,Dollar,Million,"Market Name | Category (Cigarettes,P1,P4,P5,OTP) | Sub-Category | PRO or CON | Demand Driver | Pro / Con description | Probability | Technology / Format | Brand Family | L-1 (Version) | UoM | Jan | Feb | Mar | Apr | May | Jun | Jul | Aug | Sep | Oct | Nov | Dec",Describes the pros and cons related to the financial shipments in a month. Pro refers to any positive tailwind for the business while Con refers to any headwind for the business. Monthly columns provide the dollar value of pro and con estimated for a month,,Raw
+KEY_INDICATORS,PMI Key Indicators.xlsx,Key Indicators,"Sales Forecasting Accuracy (SFA) - %
+
+Bias - %
+
+Customer Fill rate - %
+
+Productivity - thousand $ 
+
+LOGD - Mil $
+
+Ageing Inventory @WH (> 9 months) - Mil $
+
+Innovation Index - %
+
+KS SOS - %
+
+Brand Equity (PMI & Competition, Brand Perception + Brand Loyalty) - % 
+
+MI Activities - No of ECC - thousands
+MI Activities - No of cities - Absolute number
+
+IPM DSD - No of Outlets ('000) - thousands
+
+IPM Availability - 
+No of Outlets ('000) - thousands
+
+Visibility Expansion Ach - Absolute number","Sales Forecasting Accuracy (SFA) - %
+
+Bias - %
+
+Customer Fill rate - %
+
+Productivity - thousand $ 
+
+LOGD - Mil $
+
+Ageing Inventory @WH (> 9 months) - Mil $
+
+Innovation Index - %
+
+KS SOS - %
+
+Brand Equity (PMI & Competition, Brand Perception + Brand Loyalty) - % 
+
+MI Activities - No of ECC - thousands
+MI Activities - No of cities - Absolute number
+
+IPM DSD - No of Outlets ('000) - thousands
+
+IPM Availability - 
+No of Outlets ('000) - thousands
+
+Visibility Expansion Ach - Absolute number",Key Indicators | Month names | FY'YY YTD | FY Target,"Use this file whenever any information on Key KPIs is asked. If user asks about these KPIs directly or indirectly, fetch values from here and show as results across the month range which user has asked. 
+
+If SFA is below 90% in any month or bias is above 5%, this should be highlighted as red to user.
+
+Customer fill rate below 99% in any month should be highlighted as red to user.
+
+FY Target columns should be used to benchmark any KPI with the target that has to be achieved
+
+FY YTD gives a consolidated value of that KPI for year to date across months that have gone by and can be used to benchmark performance against target","Sales Forecasting Accuracy (SFA) - Measures how close forecasted sales are to actual financial shipments for a given month. High SFA indicates effective demand planning and alignment across operations and sales teams. Low accuracy may signal forecasting errors or demand volatility. Definition of M-1 (Lag 1): Compares the actual sales of a given month with the forecast for that same month prepared in the previous month. Definition of M-3 (Lag 3): Compares the actual sales of a given month with the forecast for that same month prepared three months earlier.
+
+Bias - Indicates systematic over- or under-forecasting in sales predictions. Positive bias means consistent overestimation, while negative bias reflects underestimation. Helps identify structural issues in forecasting rather than random error. Definition of M-1 (Lag 1): Compares the actual sales of a given month with the forecast for that same month prepared in the previous month. Definition of M-3 (Lag 3): Compares the actual sales of a given month with the forecast for that same month prepared three months earlier.
+
+Customer Fill Rate - Represents the percentage of customer demand fulfilled from available inventory without stockouts. A high fill rate shows strong service levels and supply reliability. Low fill rate may lead to lost sales and reduced customer satisfaction.
+
+Productivity 
+
+LOGD - Quantifies loss of goods and is the write-off done in a particular month, value is cumulative from January to December and resets to 0 in January of new year. 
+
+Ageing Inventory @WH (> 9 months) - Measures the proportion or value of inventory that has been in stock for more than 9 months. High ageing inventory signals slow-moving stock, risk of obsolescence, and working capital inefficiencies.
+
+Innovation Index - Captures the contribution of new products volume (launched in last 24 months) to total volume sales. A higher index reflects stronger innovation adoption and portfolio renewal.
+
+KS SOS - Measures the market share of King Size variant in PMI portfolio compared to competitors.
+
+Brand Equity (PMI & Competition, Brand Perception + Brand Loyalty) - Assesses overall brand strength including awareness and trails versus competitors.
+
+MI Activities - Tracks execution and frequency of competitive intelligence and market insights gathering activities. Includes monitoring competitor pricing, promotions, and consumer trends to inform strategy.
+
+IPM DSD - No of Outlets ('000) - Represents the number of outlets served through Direct Store Delivery (DSD) by PMI distributor GPI. Indicates the reach and direct distribution footprint in the market.
+
+IPM Availability - No of Outlets ('000) - Measures how many outlets have PMI products available for sale at a given time. Reflects product penetration and distribution effectiveness.
+
+Visibility Expansion Ach - Tracks the achievement of in-store visibility targets such as displays, signage, and merchandising units. Higher achievement indicates better brand presence and influence at the point of sale.",Raw
+NCPT_BAM_FUNNEL_SEGMENTS,PMI NCPT BAM Funnel.xlsx,BAM By Segments,"Base (Unweighted) and Base (Weighted) in absolute numbers, rest all other numbers in %","Base (Unweighted) and Base (Weighted) in absolute numbers, rest all other numbers in %",Geography | Time Period | Segment | Metric | Q1'24 | Q1'25 | Q3'25 | Diff (Q3'25 vs Q1'25) | Base (Unweighted) | Base (Weighted),"Contains Brand awareness to buying funnel metrics across cigarette length segments (100 MM, 84 MM, RF, PF), flavor segments (kretek, menthol, NTD, regular), strength segments (capsule, FF, LTN),  capsule segment (capsule, non capsule), price segment (premium, high, value, low), length * price segment ( KS Premium, KS High, RF High, RF Value, PF Value, PF Low, Plain Low) tracked through consumer research. Base represents the total consumers surveyed.
+
+Provides the brand funnel progression across parameters like Total Awareness, Tried in Past 12 Months, Bought in Past 12 Months, Penetration,  Main Brand usage. 
+
+Data is tracked half yearly and covers 5 FCs (Focus cities - Delhi, Pune, Mumbai, Bangalore, Hyderabad) and 11 FCs (Focus Cities - Delhi, Pune, Mumbai, Bangalore, Hyderabad, Chennai, NCR (Noida/ GGN), Lucknow, Kolkata, Ahmedabad, Indore). For 5 FCs, data is available for Q1'24, Q1'25 and Q3'25. For 11 FCs, data is available for Q1'25 and Q3'25
+
+Data is also tracked across age cohorts - 19-24 years, 25-34 years, 35-44 years, 45-54 years, 55-64 years","Tracks consumer brand awareness and purchase behavior funnel for different cigarette length segments (100 MM, 84 MM, RF, PF), flavor segments (kretek, menthol, NTD, regular), strength segments (capsule, FF, LTN),  capsule segment (capsule, non capsule), price segment (premium, high, value, low), length * price segment ( KS Premium, KS High, RF High, RF Value, PF Value, PF Low, Plain Low) 
+
+Enables assessment of brand health through awareness-to-purchase conversion rates
+Provides geographic comparison of brand performance across major Indian cities and age cohorts
+
+-Total awareness: % of people who are aware of the brand, segment, flavor etc. 
+
+-Brands Tried in P12M: % of consumers who sampled, experimented with, or smoked this product at least once in the past 12 months. This measures trial and curiosity.
+
+-Brands Bought in P12M: % of consumers who actively purchased this product in the past 12 months. This confirms intent to spend and tracks actual sales conversion over trial.
+
+-Penetration (Main Brand + Occasional): The total brand reach or market penetration. It represents the combined percentage of the target audience who considers this product as their main brand plus those who smoke it occasionally as a secondary option
+
+-Main Brand: % of consumers who identify this product as their primary, go-to cigarette of choice. This indicates strong brand loyalty and measures the core, dedicated consumer base.",Raw
+NCPT_BAM_FUNNEL_BRANDS,PMI NCPT BAM Funnel.xlsx,BAM By Brands,"Base (Unweighted) and Base (Weighted) in absolute numbers, rest all other numbers in %","Base (Unweighted) and Base (Weighted) in absolute numbers, rest all other numbers in %",Geography | Time Period | Brand/Variant | Metric | Q1'24 | Q1'25 | Q3'25 | Diff (Q3'25 vs Q1'25) | Base (Unweighted) | Base (Weighted),"Contains Brand awareness to buying funnel metrics across cigarette brands like Marlboro, Wills Flake, Gold Flake etc. tracked through consumer research. Base represents the total consumers surveyed.
+
+Provides the brand funnel progression across parameters like Total Awareness, Tried in Past 12 Months, Bought in Past 12 Months, Penetration,  Main Brand usage. 
+
+Data is tracked half yearly and covers 5 FCs (Focus cities - Delhi, Pune, Mumbai, Bangalore, Hyderabad) and 11 FCs (Focus Cities - Delhi, Pune, Mumbai, Bangalore, Hyderabad, Chennai, NCR (Noida/ GGN), Lucknow, Kolkata, Ahmedabad, Indore). For 5 FCs, data is available for Q1'24, Q1'25 and Q3'25. For 11 FCs, data is available for Q1'25 and Q3'25
+
+Data is also tracked across age cohorts - 19-24 years, 25-34 years, 35-44 years, 45-54 years, 55-64 years","Tracks consumer brand awareness and purchase behavior funnel for different cigarette brands like Marlboro KS, Wills Flake etc.
+
+Enables assessment of brand health through awareness-to-purchase conversion rates
+Provides geographic comparison of brand performance across major Indian cities and age cohorts
+
+-Total awareness: % of people who are aware of the brand, segment, flavor etc. 
+
+-Brands Tried in P12M: % of consumers who sampled, experimented with, or smoked this product at least once in the past 12 months. This measures trial and curiosity.
+
+-Brands Bought in P12M: % of consumers who actively purchased this product in the past 12 months. This confirms intent to spend and tracks actual sales conversion over trial.
+
+-Penetration (Main Brand + Occasional): The total brand reach or market penetration. It represents the combined percentage of the target audience who considers this product as their main brand plus those who smoke it occasionally as a secondary option
+
+-Main Brand: % of consumers who identify this product as their primary, go-to cigarette of choice. This indicates strong brand loyalty and measures the core, dedicated consumer base.",Raw
+NPL_TRACKER_MAIN,PMI NPL Tracker.xlsx,NPL Tracker,Volumes,Millions,Product Name | Apr-25 | May-25 | Jun-25 | Jul-25 | Aug-25 | Sep-25 | Oct-25 | Nov-25 | Dec-25 | Jan-26 | Feb-26 | Mar-26 | Apr-26 | May'26 | Jun'26 | Remarks,"Contains monthly NPL (New Product Launch) IMS (In-Market Sales) secondary volume data in millions for PMI's new product launches tracked from Apr-25 to Jun-26. Tracks 5 key NPL initiatives with detailed performance remarks covering placement status, repeat purchase rates, IP O/L achievement, outlet counts, dealer activation, and regional rollout strategies.","Enables comprehensive NPL performance tracking: (1) Volume Trajectory Monitoring - track monthly IMS to identify launch momentum, growth sustainability, plateau periods, or volume decline signals; (2) Launch Performance Assessment - evaluate placement completion %, IP O/L achievement, outlet penetration, repeat purchase rates indicating product stickiness; (3) Geographic Expansion Strategy - monitor phased rollout execution across regions (West & North-East, South, North, West Bengal, Tier 1 cities), identify successful vs underperforming geographies; (4) Distribution & Route-to-Market Strength - track outlet counts, dealer activation, indirect channel engagement; (5) Consumer Acceptance Indicators - LAS feedback, repeat rates, buying frequency; (6) Portfolio Mix Analysis - assess NPL balance across formats (Vista, EDGE, ADVANCE POCKET, KS NTD, Line Extensions); (7) Early Warning Signals - detect volume drops or sustained low volumes indicating supply issues or market rejection. Link with SECONDARY_VOLUME to compare NPL vs total Marlboro volumes. Link with FINANCIAL_SHIPMENT to understand 1-2 month lag between shipments and IMS. Link with PRIMARY_TRADE_OFFERS_MAIN to correlate promotions with volume spikes. Link with SFA_TOWN_UBO to decompose growth into outlet expansion vs throughput. Link with NIELSEN_VARIANT for data triangulation. Link with INDUSTRY_SEGMENTATION for competitive NPL benchmarking. Link with COMPETITION_MAPPING to identify competing variants. Link with MARLBORO_VARIANT_MAPPING for standardized hierarchy.",
+NPL_NIELSEN_RMS,PMI NPL Tracker.xlsx,NielsenRMS,Multiple ways,"Numeric values for ND/WD (volume or distribution metrics), Percentage for SOM (Share of Market %), vs PP expressed as percentage point change",Segment | Product | Chennai May'26 | Chennai vs PP | Hyderabad May'26 | Hyderabad vs PP,"Contains Nielsen RMS (Retail Measurement Service) competitive tracking data for Chennai and Hyderabad markets for May'26 reporting period. Data segmented by: (1) ND (Normal Days) - baseline sales performance across all days; (2) WD (Working Days) - weekday sales indicating urban working-class purchasing patterns; (3) SOM (Share of Market) - market share percentage. Products tracked: Advance Compact Edge (premium compact), Advance Compact (standard compact), Gold Flake Neo Smart (mid-range smart variant), Classic Icon (classic segment), Gold Flake Premium Red (premium flagship). Metrics: Chennai May'26 actual values, Chennai vs PP variance, Hyderabad May'26 actual values, Hyderabad vs PP variance. Data structured in clean tabular format for agent filtering, sorting, and comparative analysis. Primary Key: {Segment, Product, Market}","Enables granular South India market competitive intelligence: (1) Segment-Level Analysis - ND baseline demand patterns, WD working consumer behavior, SOM competitive positioning; (2) Cross-Market Comparison - identify regional strengths (e.g., Advance Compact Hyderabad stronghold 84.0 vs Chennai 15.9), prioritize expansion opportunities; (3) Trend Identification via vs PP - growth signals (Advance Compact +0.7/+0.9), decline signals (Advance Compact Edge -4.1 Hyderabad WD, Classic Icon -2.0 Hyderabad ND); (4) Product Portfolio Performance - premium segment high distribution but moderate SOM, format preference variation by market; (5) Competitive Intensity Assessment - Hyderabad higher pressure with larger negative swings, Chennai more stable; (6) Strategic Decision Support - geographic resource allocation, product interventions, promotional planning. Link with NPL_TRACKER_MAIN to contextualize Nielsen competitive landscape with NPL launches. Link with NIELSEN_VARIANT/NIELSEN_BRANDFAMILY/NIELSEN_MANUFACTURER for deeper analysis. Link with SECONDARY_VOLUME to validate Nielsen vs PMI internal IMS data. Link with PRIMARY_TRADE_OFFERS_MAIN to correlate promotions with vs PP changes. Link with SFA_TOWN_UBO to correlate outlet expansion with distribution changes. Link with INDUSTRY_SEGMENT",
+MARKET_SURVEY,PMI Market Visit Survey.xlsx,Market survey,Qualitative / Text,N/A,"ID | Start time | Completion time | Email | Name | Date of Market Visit | Market Visit Location | Area Type | Total Number of Outlets Visited | Primary Outlet Types Visited | What are the consumer patterns changes observed in the market based on your interaction? | Visible Change in Purchase Behavior | Fastest Moving Products Observed | New Product Launches or SKUs Gaining Traction | Visual / in-shop branding Observations | Impact on Commercials - Margins, Discounting, Bundling, or Informal Price Adjustment Information | Increase in Illicit/Imported Brands Presence | Key Area of Risk Identified | Key Opportunity Flagged | Other Observations","Contains qualitative field observations collected by PMI representatives during market visits across India. Each row represents one market visit submission with location, outlet type, number of outlets visited, and structured observations across multiple dimensions including consumer behavior, purchase patterns, product movement, branding visibility, commercial impacts, and illicit brand presence. Data is captured via a survey form and covers cities like Bangalore, Hyderabad, Coimbatore, Chennai, Madurai, Vijayawada among others. Designed to capture ground-level signals that may not be reflected in quantitative sales data, including early indicators of consumer sentiment shifts, channel feedback, and competitive activity.","Market visit survey data provides qualitative intelligence from the field to complement quantitative sales and volume data. It captures real-time ground signals such as shifts in consumer purchase behavior (e.g., from KS to RF due to price increases), fastest-moving products observed at outlets, new product traction, and presence of illicit/imported brands. This data is particularly useful for early detection of demand shifts before they appear in secondary volume or financial shipment data. It helps identify risk areas (e.g., downtrading, illicit brand growth) and opportunities (e.g., NPL traction, RF segment growth) at a city or market level. Can be used alongside SECONDARY_VOLUME and FINANCIAL_SHIPMENT data to correlate field observations with actual volume movements. Useful for understanding trade margin impacts, branding effectiveness, and distributor/retailer sentiment.",Raw
